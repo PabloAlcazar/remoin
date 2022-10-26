@@ -1,13 +1,12 @@
 from dash import Dash, callback, html, dcc, dash_table, Input, Output, State, MATCH, ALL
 import dash_bootstrap_components as dbc
-import gunicorn
 
-# app = Dash(
-#     __name__,
-#     external_stylesheets=[dbc.themes.BOOTSTRAP],
-#     suppress_callback_exceptions=True)
+app = Dash(
+    __name__,
+    external_stylesheets=[dbc.themes.BOOTSTRAP],
+    suppress_callback_exceptions=True)
 
-app = Dash(__name__)
+# app = Dash(__name__)
 server = app.server
 
 
@@ -34,10 +33,10 @@ sliders = [
 
 # Contenedor de la aplicacion
 container = dbc.Container([
-    dbc.Col(dbc.FormText('Treatments + Staff (€/unit)', style={'color':'black'}), width=3),
-    sliders
+    dbc.Row(html.H3('Remoin'), style={'text-align':'center'}),
+	html.Div(sliders)
     
-], style={'margin-top':'20px', 'margin-bottom':'40px'})
+	], style={'margin-top':'20px', 'margin-bottom':'40px'})
 
 app.layout = html.Div([container])
 
