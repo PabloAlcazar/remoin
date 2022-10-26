@@ -45,8 +45,7 @@ sliders = [
 # Contenedor de la aplicacion
 container = dbc.Container([
     dbc.Row([
-		dbc.Col(html.H3('Remoin Ingeniería')),
-		dbc.Col(html.Img(src=app.get_asset_url('brand.png'), style={'height': '100px', 'width': '100px'}))
+		html.H3('Remoin Ingeniería'),
 		], style={'text-align':'center', 'height': '100px'}),
 	dbc.Row(dcc.Graph(id="graph")),
 	html.Div(sliders),
