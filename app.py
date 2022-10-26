@@ -58,6 +58,7 @@ app.layout = html.Div([container])
 
 
 
+
 # Actualiza la figura
 @callback(
     Output("graph", "figure"), 
@@ -112,6 +113,7 @@ def update_bar_chart(gas, heptane, electricity, treat_staff, amort):
 		template='simple_white'
 		)
 	return fig
+
 
 
 
@@ -183,4 +185,4 @@ def update_inputs(slider_value, input_value):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
