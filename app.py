@@ -1,5 +1,5 @@
 from turtle import width
-from dash import Dash, callback, html, dcc, dash_table, Input, Output, State, MATCH, ALL
+from dash import Dash, callback, html, dcc, dash_table, Input, Output, State, MATCH, ALL, callback_context
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import pandas as pd
@@ -57,41 +57,6 @@ app.layout = html.Div([container])
 
 
 
-# Actualiza los sliders
-@callback(
-    Output("gas", "value"),
-	Output("heptane", "value"),
-	Output("electricity", "value"),
-	Output("treat_staff", "value"),
-	Output("amort", "value"),
-	
-	Input("gas_input", "value"),
-	Input("heptane_input", "value"),
-	Input("electricity_input", "value"),
-	Input("treat_staff_input", "value"),
-	Input("amort_input", "value"))
-def update_inputs(gas, heptane, electricity, treat_staff, amort):
-	return float(gas), float(heptane), float(electricity), float(treat_staff), float(amort)
-
-
-
-# # Actualiza los inputs
-# @callback(
-#     Output("gas_input", "value"),
-# 	Output("heptane_input", "value"),
-# 	Output("electricity_input", "value"),
-# 	Output("treat_staff_input", "value"),
-# 	Output("amort_input", "value"),
-	
-# 	Input("gas", "value"),
-# 	Input("heptane", "value"),
-# 	Input("electricity", "value"),
-# 	Input("treat_staff", "value"),
-# 	Input("amort", "value"))
-# def update_inputs(gas, heptane, electricity, treat_staff, amort):
-# 	return float(gas), float(heptane), float(electricity), float(treat_staff), float(amort)
-
-
 
 # Actualiza la figura
 @callback(
@@ -147,6 +112,70 @@ def update_bar_chart(gas, heptane, electricity, treat_staff, amort):
 		template='simple_white'
 		)
 	return fig
+
+
+
+
+
+# Actualiza los sliders y los input
+@callback(
+    Output("gas", "value"),
+	Output("gas_input", "value"),
+	Input("gas", "value"),
+	Input("gas_input", "value"))
+def update_inputs(slider_value, input_value):
+	ctx = callback_context
+	trigger_id = ctx.triggered[0]["prop_id"].split(".")[0]
+	value = input_value if trigger_id == "gas_input" else slider_value
+	return float(value), float(value)
+
+# Actualiza los sliders y los input
+@callback(
+    Output("heptane", "value"),
+	Output("heptane_input", "value"),
+	Input("heptane", "value"),
+	Input("heptane_input", "value"))
+def update_inputs(slider_value, input_value):
+	ctx = callback_context
+	trigger_id = ctx.triggered[0]["prop_id"].split(".")[0]
+	value = input_value if trigger_id == "heptane_input" else slider_value
+	return float(value), float(value)
+
+# Actualiza los sliders y los input
+@callback(
+    Output("electricity", "value"),
+	Output("electricity_input", "value"),
+	Input("electricity", "value"),
+	Input("electricity_input", "value"))
+def update_inputs(slider_value, input_value):
+	ctx = callback_context
+	trigger_id = ctx.triggered[0]["prop_id"].split(".")[0]
+	value = input_value if trigger_id == "electricity_input" else slider_value
+	return float(value), float(value)
+
+# Actualiza los sliders y los input
+@callback(
+    Output("treat_staff", "value"),
+	Output("treat_staff_input", "value"),
+	Input("treat_staff", "value"),
+	Input("treat_staff_input", "value"))
+def update_inputs(slider_value, input_value):
+	ctx = callback_context
+	trigger_id = ctx.triggered[0]["prop_id"].split(".")[0]
+	value = input_value if trigger_id == "treat_staff_input" else slider_value
+	return float(value), float(value)
+
+# Actualiza los sliders y los input
+@callback(
+    Output("amort", "value"),
+	Output("amort_input", "value"),
+	Input("amort", "value"),
+	Input("amort_input", "value"))
+def update_inputs(slider_value, input_value):
+	ctx = callback_context
+	trigger_id = ctx.triggered[0]["prop_id"].split(".")[0]
+	value = input_value if trigger_id == "amort_input" else slider_value
+	return float(value), float(value)
 
 
 
