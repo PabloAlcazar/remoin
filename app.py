@@ -44,13 +44,18 @@ sliders = [
 
 # Contenedor de la aplicacion
 container = dbc.Container([
-    dbc.Row(html.H3('Remoin Ingeniería'), style={'text-align':'center'}),
+    dbc.Row([
+		dbc.Col(html.H3('Remoin Ingeniería')),
+		dbc.Col(html.Img(src=app.get_asset_url('brand.png'), style={'height': '100px', 'width': '100px'}))
+		], style={'text-align':'center', 'height': '100px'}),
 	dbc.Row(dcc.Graph(id="graph")),
 	html.Div(sliders),
     
 	], style={'margin-top':'20px', 'margin-bottom':'40px'})
 
 app.layout = html.Div([container])
+
+
 
 # Actualiza los sliders
 @callback(
@@ -69,6 +74,7 @@ def update_inputs(gas, heptane, electricity, treat_staff, amort):
 	return float(gas), float(heptane), float(electricity), float(treat_staff), float(amort)
 
 
+
 # Actualiza los inputs
 @callback(
     Output("gas_input", "value"),
@@ -84,6 +90,7 @@ def update_inputs(gas, heptane, electricity, treat_staff, amort):
 	Input("amort", "value"))
 def update_inputs(gas, heptane, electricity, treat_staff, amort):
 	return float(gas), float(heptane), float(electricity), float(treat_staff), float(amort)
+
 
 
 # Actualiza la figura
