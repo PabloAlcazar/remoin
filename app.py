@@ -59,7 +59,7 @@ container = dbc.Container([
 			]),
 			dbc.Row([
 				dbc.Col(dbc.FormText('Electricity (€/kW)', style={'color':'black', 'width':'100%'}), width=4),
-				dbc.Col(dcc.Input(id='electricity_market', value=.25), width=1)
+				dbc.Col(dcc.Input(id='electricity_market', value=.179), width=1)
 			]),
 		], width=5, align="center"),
 	]),
@@ -77,11 +77,13 @@ app.layout = container
 @callback(
     Output("graph", "figure"), 
 	Output("years_amort", "children"), 
-    Input("gas_unit", "children"),
-	Input("heptane_unit", "children"),
-	Input("electricity_unit", "children"),
+	Input("heptane_market", "value"),
+	Input("gas_market", "value"),
+	Input("electricity_market", "value"),
 	Input("treat_staff", "value"),
-	Input("amort", "value"))
+	Input("amort", "value"),
+
+	)
 def update_bar_chart(gas, heptane, electricity, treat_staff, amort):
 
 	heptane_20 = 0.24
@@ -100,7 +102,7 @@ def update_bar_chart(gas, heptane, electricity, treat_staff, amort):
 	price_22 = 5.501177
 	earn_22 = 0.500107 
 
-	costeSimulado = float(gas)+float(heptane)+float(electricity)+treat_staff+amort
+	costeSimulado = float(gas)*1.34+float(heptane)*.29+float(electricity)*1+treat_staff+amort
 
 	df = {
 		'year': ['2020']*3 + ['2022']*3 + ['Simulator']*3,
@@ -151,21 +153,21 @@ def update_bar_chart(gas, heptane, electricity, treat_staff, amort):
     Output("heptane_unit", "children"),
 	Input("heptane_market", "value"))
 def update_heptane_units(heptane_market):
-	return heptane_market*0.29
+	return round(float(heptane_market)*.29, 4)
 
 # Actualiza las unidades por rueda en funcion del precio mercado
 @callback(
     Output("gas_unit", "children"),
 	Input("gas_market", "value"))
 def update_gas_units(gas_market):
-	return gas_market*1.34
+	return round(float(gas_market)*1.34, 4)
 
 # Actualiza las unidades por rueda en funcion del precio mercado
 @callback(
     Output("electricity_unit", "children"),
 	Input("electricity_market", "value"))
 def update_electricity_units(electricity_market):
-	return electricity_market*1.34
+	return round(float(electricity_market)*1, 4)
 
 # Actualiza los sliders y los input
 @callback(
