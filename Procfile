@@ -1,0 +1,1 @@
+WORKER: python script.py
