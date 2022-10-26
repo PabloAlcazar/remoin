@@ -1,4 +1,3 @@
-from turtle import width
 from dash import Dash, callback, html, dcc, dash_table, Input, Output, State, MATCH, ALL, callback_context
 import dash_bootstrap_components as dbc
 import plotly.express as px
