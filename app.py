@@ -111,7 +111,7 @@ def update_bar_chart(gas, heptane, electricity, treat_staff, amort):
 			# precio, coste, ganancias (1 fila*año)
 			price_20, heptane_20+gas_20+amo_20+stuff_20+ele_20,earn_20,
 			price_22, heptane_22+gas_22+amo_22+stuff_22+ele_22,earn_22,
-			costeSimulado/(1-(10/100)),costeSimulado,(costeSimulado/(1-(10/100)))-costeSimulado
+			costeSimulado+costeSimulado*.1,costeSimulado,costeSimulado*.1
 		]
 	}
 	df = pd.DataFrame(df)
