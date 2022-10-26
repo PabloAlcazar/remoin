@@ -9,7 +9,6 @@ app = Dash(
     external_stylesheets=[dbc.themes.BOOTSTRAP],
     suppress_callback_exceptions=True)
 
-# app = Dash(__name__)
 server = app.server
 
 
