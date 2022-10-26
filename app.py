@@ -1,15 +1,15 @@
-
-
 from dash import Dash, callback, html, dcc, dash_table, Input, Output, State, MATCH, ALL
 import dash_bootstrap_components as dbc
 import gunicorn
 
-app = Dash(
-    __name__,
-    external_stylesheets=[dbc.themes.BOOTSTRAP],
-    suppress_callback_exceptions=True)
+# app = Dash(
+#     __name__,
+#     external_stylesheets=[dbc.themes.BOOTSTRAP],
+#     suppress_callback_exceptions=True)
 
+app = Dash(__name__)
 server = app.server
+
 
 
 sliders = [
