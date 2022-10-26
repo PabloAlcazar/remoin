@@ -1,4 +1,3 @@
-Flask
-matplotlib
 dash
 dash-bootstrap-components
+gunicorn
