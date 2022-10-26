@@ -33,7 +33,7 @@ sliders = [
 	]),
 	dbc.Row([
 		dbc.Col(dbc.FormText('Amortization (€/unit)*', style={'color':'black'}), width=3),
-		dbc.Col(dcc.Slider(0, 2, .01, value=2.90697, id='amort', marks=None, tooltip={"placement": "bottom", "always_visible": True}),width=9)
+		dbc.Col(dcc.Slider(0, 2, .01, value=.2, id='amort', marks=None, tooltip={"placement": "bottom", "always_visible": True}),width=9)
 	]),dbc.FormText('* The smaller the amortization, the longer the contract needs to go on in order to obtain ROI', style={'color':'black'})
 ]
 
