@@ -181,17 +181,6 @@ def update_inputs(slider_value, input_value):
 	value = input_value if trigger_id == "heptane_input" else slider_value
 	return float(value), float(value)
 
-# Actualiza los sliders y los input
-@callback(
-    Output("electricity", "value"),
-	Output("electricity_input", "value"),
-	Input("electricity", "value"),
-	Input("electricity_input", "value"))
-def update_inputs(slider_value, input_value):
-	ctx = callback_context
-	trigger_id = ctx.triggered[0]["prop_id"].split(".")[0]
-	value = input_value if trigger_id == "electricity_input" else slider_value
-	return float(value), float(value)
 
 # Actualiza los sliders y los input
 @callback(
