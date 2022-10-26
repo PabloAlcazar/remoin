@@ -1,0 +1,4 @@
+Flask
+matplotlib
+dash
+dash-bootstrap-components
