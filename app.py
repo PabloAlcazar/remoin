@@ -14,14 +14,14 @@ server = app.server
 
 sliders = [
 	dbc.Row([
-		dbc.Col(dbc.FormText('Gas-oil (€/unit)', style={'color':'black'}), width=3),
-		dbc.Col(dcc.Input(id='gas_input', value=1.281, style={'width':'100%'}), width=2),
-		dbc.Col(dcc.Slider(0, 2, .01, value=1.281, id='gas', marks=None, tooltip={"placement": "bottom", "always_visible": True}),width=7)
-	]),
-	dbc.Row([
-		dbc.Col(dbc.FormText('Heptane (€/unit)', style={'color':'black'}), width=3),
+		dbc.Col(dbc.FormText('Heptane (€/l)', style={'color':'black'}), width=3),
 		dbc.Col(dcc.Input(id='heptane_input', value=.4341, style={'width':'100%'}), width=2),
 		dbc.Col(dcc.Slider(0, 2, .01, value=.4341, id='heptane', marks=None, tooltip={"placement": "bottom", "always_visible": True}),width=7)
+	]),
+	dbc.Row([
+		dbc.Col(dbc.FormText('Gas-oil (€/l)', style={'color':'black'}), width=3),
+		dbc.Col(dcc.Input(id='gas_input', value=1.281, style={'width':'100%'}), width=2),
+		dbc.Col(dcc.Slider(0, 2, .01, value=1.281, id='gas', marks=None, tooltip={"placement": "bottom", "always_visible": True}),width=7)
 	]),
 	dbc.Row([
 		dbc.Col(dbc.FormText('Electricity (€/unit)', style={'color':'black'}), width=3),
@@ -77,9 +77,9 @@ def update_bar_chart(gas, heptane, electricity, treat_staff, amort):
 	earn_20 = 0.4464
 
 	heptane_22 = 0.4341
-	gas_22 = 1.281
-	stuff_22 = 2.8739
-	amo_22 = 0.2
+	gas_22 = 1.281 # 1.34
+	stuff_22 = 2.8739 # 
+	amo_22 = 0.233
 	ele_22 = 0.179
 	price_22 = 5.501177
 	earn_22 = 0.500107 
