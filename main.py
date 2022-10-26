@@ -83,6 +83,7 @@ class IndexTracker(object):
         #     proposed = proposed*1.01
 
         # Fair price
+        
         price = self.data[1][-1] + self.data[2][-1]
 
         return price, proposed
