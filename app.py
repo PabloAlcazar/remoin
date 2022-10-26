@@ -1,6 +1,6 @@
+from turtle import width
 from dash import Dash, callback, html, dcc, dash_table, Input, Output, State, MATCH, ALL
 import dash_bootstrap_components as dbc
-# import gunicorn
 import plotly.express as px
 import pandas as pd
 
@@ -17,23 +17,28 @@ server = app.server
 sliders = [
 	dbc.Row([
 		dbc.Col(dbc.FormText('Gas-oil (€/unit)', style={'color':'black'}), width=3),
-		dbc.Col(dcc.Slider(0, 2, .01, value=1.281, id='gas', marks=None, tooltip={"placement": "bottom", "always_visible": True}),width=9)
+		dbc.Col(dcc.Input(id='gas_input', value=1.281, style={'width':'100%'}), width=2),
+		dbc.Col(dcc.Slider(0, 2, .01, value=1.281, id='gas', marks=None, tooltip={"placement": "bottom", "always_visible": True}),width=7)
 	]),
 	dbc.Row([
 		dbc.Col(dbc.FormText('Heptane (€/unit)', style={'color':'black'}), width=3),
-		dbc.Col(dcc.Slider(0, 2, .01, value=0.4341, id='heptane', marks=None, tooltip={"placement": "bottom", "always_visible": True}),width=9)
+		dbc.Col(dcc.Input(id='heptane_input', value=.4341, style={'width':'100%'}), width=2),
+		dbc.Col(dcc.Slider(0, 2, .01, value=.4341, id='heptane', marks=None, tooltip={"placement": "bottom", "always_visible": True}),width=7)
 	]),
 	dbc.Row([
 		dbc.Col(dbc.FormText('Electricity (€/unit)', style={'color':'black'}), width=3),
-		dbc.Col(dcc.Slider(0, 1, .01, value=0.179, id='electricity', marks=None, tooltip={"placement": "bottom", "always_visible": True}),width=9)
+		dbc.Col(dcc.Input(id='electricity_input', value=.179, style={'width':'100%'}), width=2),
+		dbc.Col(dcc.Slider(0, 1, .01, value=.179, id='electricity', marks=None, tooltip={"placement": "bottom", "always_visible": True}),width=7)
 	]),
 	dbc.Row([
 		dbc.Col(dbc.FormText('Treatments + Staff (€/unit)', style={'color':'black'}), width=3),
-		dbc.Col(dcc.Slider(0, 5, .01, value=2.90697, id='treat_staff', marks=None, tooltip={"placement": "bottom", "always_visible": True}),width=9)
+		dbc.Col(dcc.Input(id='treat_staff_input', value=2.90697, style={'width':'100%'}), width=2),
+		dbc.Col(dcc.Slider(0, 5, .01, value=2.90697, id='treat_staff', marks=None, tooltip={"placement": "bottom", "always_visible": True}),width=7)
 	]),
 	dbc.Row([
 		dbc.Col(dbc.FormText('Amortization (€/unit)*', style={'color':'black'}), width=3),
-		dbc.Col(dcc.Slider(0, 2, .01, value=.2, id='amort', marks=None, tooltip={"placement": "bottom", "always_visible": True}),width=9)
+		dbc.Col(dcc.Input(id='amort_input', value=.2, style={'width':'100%'}), width=2),
+		dbc.Col(dcc.Slider(0, 2, .01, value=.2, id='amort', marks=None, tooltip={"placement": "bottom", "always_visible": True}),width=7)
 	]),dbc.FormText('* The smaller the amortization, the longer the contract needs to go on in order to obtain ROI', style={'color':'black'})
 ]
 
@@ -48,10 +53,41 @@ container = dbc.Container([
 
 app.layout = html.Div([container])
 
+# Actualiza los sliders
+@callback(
+    Output("gas", "value"),
+	Output("heptane", "value"),
+	Output("electricity", "value"),
+	Output("treat_staff", "value"),
+	Output("amort", "value"),
+	
+	Input("gas_input", "value"),
+	Input("heptane_input", "value"),
+	Input("electricity_input", "value"),
+	Input("treat_staff_input", "value"),
+	Input("amort_input", "value"))
+def update_inputs(gas, heptane, electricity, treat_staff, amort):
+	return float(gas), float(heptane), float(electricity), float(treat_staff), float(amort)
 
 
+# Actualiza los inputs
+@callback(
+    Output("gas_input", "value"),
+	Output("heptane_input", "value"),
+	Output("electricity_input", "value"),
+	Output("treat_staff_input", "value"),
+	Output("amort_input", "value"),
+	
+	Input("gas", "value"),
+	Input("heptane", "value"),
+	Input("electricity", "value"),
+	Input("treat_staff", "value"),
+	Input("amort", "value"))
+def update_inputs(gas, heptane, electricity, treat_staff, amort):
+	return float(gas), float(heptane), float(electricity), float(treat_staff), float(amort)
 
 
+# Actualiza la figura
 @callback(
     Output("graph", "figure"), 
     Input("gas", "value"),
@@ -113,4 +149,3 @@ def update_bar_chart(gas, heptane, electricity, treat_staff, amort):
 
 if __name__ == '__main__':
     app.run_server(debug=False)
-    # app.run_server(host='0.0.0.0', debug=False, port=8050)
