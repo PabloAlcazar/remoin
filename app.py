@@ -75,21 +75,21 @@ def update_inputs(gas, heptane, electricity, treat_staff, amort):
 
 
 
-# Actualiza los inputs
-@callback(
-    Output("gas_input", "value"),
-	Output("heptane_input", "value"),
-	Output("electricity_input", "value"),
-	Output("treat_staff_input", "value"),
-	Output("amort_input", "value"),
+# # Actualiza los inputs
+# @callback(
+#     Output("gas_input", "value"),
+# 	Output("heptane_input", "value"),
+# 	Output("electricity_input", "value"),
+# 	Output("treat_staff_input", "value"),
+# 	Output("amort_input", "value"),
 	
-	Input("gas", "value"),
-	Input("heptane", "value"),
-	Input("electricity", "value"),
-	Input("treat_staff", "value"),
-	Input("amort", "value"))
-def update_inputs(gas, heptane, electricity, treat_staff, amort):
-	return float(gas), float(heptane), float(electricity), float(treat_staff), float(amort)
+# 	Input("gas", "value"),
+# 	Input("heptane", "value"),
+# 	Input("electricity", "value"),
+# 	Input("treat_staff", "value"),
+# 	Input("amort", "value"))
+# def update_inputs(gas, heptane, electricity, treat_staff, amort):
+# 	return float(gas), float(heptane), float(electricity), float(treat_staff), float(amort)
 
 
 
@@ -154,4 +154,4 @@ def update_bar_chart(gas, heptane, electricity, treat_staff, amort):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)
