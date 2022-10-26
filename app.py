@@ -9,7 +9,7 @@ app = Dash(
     external_stylesheets=[dbc.themes.BOOTSTRAP],
     suppress_callback_exceptions=True)
 
-server = app.server
+
 
 
 sliders = [
@@ -41,7 +41,7 @@ container = dbc.Container([
 
 app.layout = html.Div([container])
 
-
+server = app.server
 
 
 if __name__ == '__main__':
