@@ -101,7 +101,7 @@ def update_bar_chart(gas, heptane, electricity, treat_staff, amort):
 
 	fig = px.bar(df, x="year", y="money", 
 				color="category", barmode="group", text_auto=True)
-	fig.update_traces(textfont_size=12, texttemplate='%{y:.2f}', textangle=0, textposition="outside", cliponaxis=False)
+	fig.update_traces(textfont_size=12, texttemplate='%{y:.3f}', textangle=0, textposition="outside", cliponaxis=False)
 	fig.update_layout(
 		yaxis_title="€ per unit",
 		legend_title_text='',
