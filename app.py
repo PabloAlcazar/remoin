@@ -9,7 +9,7 @@ app = Dash(
     external_stylesheets=[dbc.themes.BOOTSTRAP],
     suppress_callback_exceptions=True)
 
-
+server = app.server
 
 
 sliders = [
@@ -34,14 +34,14 @@ sliders = [
 
 # Contenedor de la aplicacion
 container = dbc.Container([
-    
+    dbc.Col(dbc.FormText('Treatments + Staff (€/unit)', style={'color':'black'}), width=3),
     sliders
     
 ], style={'margin-top':'20px', 'margin-bottom':'40px'})
 
 app.layout = html.Div([container])
 
-server = app.server
+
 
 
 if __name__ == '__main__':
