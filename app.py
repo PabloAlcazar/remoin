@@ -1,5 +1,6 @@
 from dash import Dash, callback, html, dcc, dash_table, Input, Output, State, MATCH, ALL
 import dash_bootstrap_components as dbc
+import gunicorn
 
 app = Dash(
     __name__,
